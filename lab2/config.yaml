@@ -1,0 +1,29 @@
+db:
+  type: sqlite
+  path: "crawler.db"
+
+logic:
+  delay_sec: 0.2
+  user_agent: "MAI-IR-LAB2/1.0 (student; polite crawler)"
+  timeout_sec: 30
+  recrawl_every_sec: 86400
+  save_text: true
+  docs_dir: "corpus/docs"
+  min_text_chars: 800
+
+sources:
+  - name: "wikipedia_ru"
+    seed:
+      kind: "wiki_category"
+      api: "https://ru.wikipedia.org/w/api.php"
+      category: "Категория:Фильмы по алфавиту"
+      max_seed: 40000
+      page_url_pattern: "https://ru.wikipedia.org/?curid={pageid}"
+
+  - name: "wikisource_ru"
+    seed:
+      kind: "wiki_category"
+      api: "https://ru.wikisource.org/w/api.php"
+      category: "Категория:Произведения по алфавиту"
+      max_seed: 10000
+      page_url_pattern: "https://ru.wikisource.org/?curid={pageid}"
